@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即捐赠 - 衣物回收再设计项目</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <style>
+        .donation-hero {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .donation-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .donation-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .donation-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .donation-methods {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            border-color: #28a745;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .method-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .method-title {
+            color: #2c5530;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .method-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .method-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .method-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .donation-form-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e9ecef;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .step.active .step-number {
+            background: #28a745;
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: #20c997;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #28a745;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-item:hover {
+            border-color: #28a745;
+            background: #f8f9fa;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .progress-summary {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .total-points {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #28a745;
+            border-top: 2px solid #e9ecef;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.png" alt="衣物回收再设计" class="logo">
+                <span class="logo-text">衣物回收再设计</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">返回首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="personal-center.html" class="nav-link">个人中心</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="donation-hero">
+        <div class="container">
+            <h1>立即捐赠，让旧衣焕发新生</h1>
+            <p>每一件捐赠的衣物都将经过专业分拣和创意改造，为环保事业贡献力量，同时获得积分奖励</p>
+            
+            <div class="donation-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50,000+</span>
+                    <span class="stat-label">件衣物已回收</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15,000+</span>
+                    <span class="stat-label">件成功改造</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">300+</span>
+                    <span class="stat-label">吨碳减排</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Methods -->
+    <section class="donation-methods">
+        <div class="container">
+            <h2 class="section-title">选择捐赠方式</h2>
+            
+            <div class="method-grid">
+                <div class="method-card" onclick="selectMethod('pickup')">
+                    <div class="method-icon">🚚</div>
+                    <h3 class="method-title">上门回收</h3>
+                    <ul class="method-features">
+                        <li>免费上门收取</li>
+                        <li>专业包装运输</li>
+                        <li>实时进度跟踪</li>
+                        <li>24小时内响应</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">选择此方式</button>
+                </div>
+                
+                <div class="method-card" onclick="selectMethod('store')">
+                    <div class="method-icon">🏪</div>
+                    <h3 class="method-title">门店投递</h3>
+                    <ul class="method-features">
+                        <li>即时投递确认</li>
+                        <li>现场积分到账</li>
+                        <li>专业咨询服务</li>
+                        <li>免费咖啡体验</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">选择此方式</button>
+                </div>
+                
+                <div class="method-card" onclick="selectMethod('community')">
+                    <div class="method-icon">📦</div>
+                    <h3 class="method-title">社区回收点</h3>
+                    <ul class="method-features">
+                        <li>就近便民投递</li>
+                        <li>24小时开放</li>
+                        <li>定期统一收集</li>
+                        <li>环保积分奖励</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">选择此方式</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Form -->
+    <section class="donation-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="section-title">填写捐赠信息</h2>
+                
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <span>衣物信息</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <span>联系方式</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <span>确认提交</span>
+                    </div>
+                </div>
+                
+                <form id="donationForm">
+                    <!-- Step 1: 衣物信息 -->
+                    <div class="form-step active" id="step1">
+                        <h3>请选择要捐赠的衣物类型</h3>
+                        
+                        <div class="form-group">
+                            <label>衣物类型（可多选）</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="adult-coat" name="clothingType" value="adult-coat" data-points="50">
+                                    <label for="adult-coat">成人外套 (50积分/件)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="adult-shirt" name="clothingType" value="adult-shirt" data-points="30">
+                                    <label for="adult-shirt">成人上衣 (30积分/件)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="adult-pants" name="clothingType" value="adult-pants" data-points="40">
+                                    <label for="adult-pants">成人裤装 (40积分/件)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="child-clothes" name="clothingType" value="child-clothes" data-points="30">
+                                    <label for="child-clothes">儿童衣物 (30积分/件)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="shoes" name="clothingType" value="shoes" data-points="35">
+                                    <label for="shoes">鞋类 (35积分/件)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="accessories" name="clothingType" value="accessories" data-points="25">
+                                    <label for="accessories">配饰 (25积分/件)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">预估总数量</label>
+                            <input type="number" id="quantity" name="quantity" class="form-input" min="1" placeholder="请输入件数" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="condition">衣物状况</label>
+                            <select id="condition" name="condition" class="form-select" required>
+                                <option value="">请选择</option>
+                                <option value="excellent">九成新以上</option>
+                                <option value="good">七八成新</option>
+                                <option value="fair">五六成新</option>
+                                <option value="poor">需要修补</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">特殊说明（可选）</label>
+                            <textarea id="description" name="description" class="form-textarea" placeholder="如有特殊材质、品牌或其他需要说明的情况，请在此填写"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: 联系方式 -->
+                    <div class="form-step" id="step2">
+                        <h3>请填写您的联系信息</h3>
+                        
+                        <div class="form-group">
+                            <label for="name">姓名 *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">手机号 *</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">详细地址 *</label>
+                            <textarea id="address" name="address" class="form-textarea" placeholder="请填写详细的收取地址，包括省市区街道门牌号" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointmentTime">预约时间</label>
+                            <input type="datetime-local" id="appointmentTime" name="appointmentTime" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>时间偏好</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <label style="display: flex; align-items: center;">
+                                    <input type="radio" name="timePreference" value="weekday" style="margin-right: 0.5rem;">
+                                    工作日
+                                </label>
+                                <label style="display: flex; align-items: center;">
+                                    <input type="radio" name="timePreference" value="weekend" style="margin-right: 0.5rem;">
+                                    周末
+                                </label>
+                                <label style="display: flex; align-items: center;">
+                                    <input type="radio" name="timePreference" value="anytime" style="margin-right: 0.5rem;">
+                                    随时
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: 确认提交 -->
+                    <div class="form-step" id="step3">
+                        <h3>确认捐赠信息</h3>
+                        
+                        <div class="progress-summary">
+                            <h4>捐赠摘要</h4>
+                            <div id="summaryContent">
+                                <!-- 动态生成内容 -->
+                            </div>
+                            <div class="summary-item total-points">
+                                <span>预计获得积分：</span>
+                                <span id="totalPoints">0 分</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 2rem;">
+                            <label style="display: flex; align-items: center;">
+                                <input type="checkbox" id="agreement" name="agreement" required style="margin-right: 0.5rem;">
+                                我已阅读并同意《捐赠协议》和《隐私政策》
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center;">
+                                <input type="checkbox" id="newsletter" name="newsletter" style="margin-right: 0.5rem;">
+                                订阅项目进展通知和环保资讯
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <div class="form-navigation">
+                        <button type="button" id="prevBtn" class="btn btn-secondary" onclick="changeStep(-1)" style="display: none;">上一步</button>
+                        <button type="button" id="nextBtn" class="btn btn-primary" onclick="changeStep(1)">下一步</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">提交捐赠</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>电话：400-123-4567</p>
+                    <p>邮箱：contact@clothingrecycle.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>服务时间</h4>
+                    <p>周一至周日：9:00-18:00</p>
+                    <p>上门回收：24小时预约</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 衣物回收再设计项目. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/donation.js"></script>
+</body>
+</html>

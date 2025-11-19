@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>衣物回收再设计项目 - 让旧衣焕发新生</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.png" alt="衣物回收再设计" class="logo">
+                <span class="logo-text">衣物回收再设计</span>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="搜索回收规则、积分兑换、公益案例..." class="search-input">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#concept" class="nav-link">项目理念</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#participation" class="nav-link">参与入口</a>
+                    <div class="dropdown-menu">
+                        <a href="#donation" class="dropdown-link">捐赠回收</a>
+                        <a href="#points-rules" class="dropdown-link">积分规则</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于我们</a>
+                </li>
+            </ul>
+            
+            <!-- Quick Actions -->
+            <div class="nav-actions">
+                <a href="donation.html" class="btn btn-primary">立即捐赠</a>
+                <button class="btn btn-secondary" id="bookStoreBtn">预约体验店活动</button>
+                <a href="personal-center.html" class="btn btn-outline">个人中心</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner" id="heroBanner">
+        <div class="banner-slider">
+            <div class="banner-slide active" data-bg="assets/images/carousel-1.jpg">
+                <div class="banner-content">
+                    <h1 class="banner-title fade-in">创意改造，让旧衣焕发新生</h1>
+                    <p class="banner-subtitle fade-in">环保 · 重塑</p>
+                </div>
+            </div>
+            <div class="banner-slide" data-bg="assets/images/carousel-2.jpg">
+                <div class="banner-content">
+                    <h1 class="banner-title fade-in">匠心工艺，精细改造</h1>
+                    <p class="banner-subtitle fade-in">设计师 · 手工 · 品质</p>
+                </div>
+            </div>
+            <div class="banner-slide" data-bg="assets/images/carousel-3.jpg">
+                <div class="banner-content">
+                    <h1 class="banner-title fade-in">艺术表达，个性展现</h1>
+                    <p class="banner-subtitle fade-in">创意 · 个性</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="banner-actions">
+            <a href="donation.html" class="btn btn-large btn-primary">开始捐赠</a>
+            <button class="btn btn-large btn-outline" onclick="scrollToSection('concept')">了解更多</button>
+        </div>
+        
+        <div class="banner-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- Business Cards Section -->
+    <section class="business-section">
+        <div class="container">
+            <h2 class="section-title">核心业务入口</h2>
+            <div class="business-cards">
+                <div class="business-card" onclick="scrollToSection('experience-store')">
+                    <div class="card-badge">最新活动</div>
+                    <img src="assets/images/experience-store.jpg" alt="线下体验店" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">线下体验店</h3>
+                        <p class="card-description">免费咖啡 · 手工课程 · 环保理念分享</p>
+                        <ul class="card-highlights">
+                            <li>每周末免费手工课</li>
+                            <li>环保咖啡品鉴</li>
+                            <li>改造作品展示</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="business-card" onclick="scrollToSection('market')">
+                    <div class="card-badge">热门</div>
+                    <img src="assets/images/market.jpg" alt="可持续循环市集" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">可持续循环市集</h3>
+                        <p class="card-description">Remake商品 · 创意集市 · 环保生活</p>
+                        <ul class="card-highlights">
+                            <li>设计师改造作品</li>
+                            <li>环保生活用品</li>
+                            <li>积分兑换专区</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <!-
+- Project Concept Section -->
+    <section class="concept-section" id="concept">
+        <div class="container">
+            <h2 class="section-title">项目理念</h2>
+            
+            <!-- Process Flow -->
+            <div class="process-flow">
+                <div class="flow-node" onclick="showFlowDetails('donation')">
+                    <div class="flow-icon">👕</div>
+                    <h4>用户捐赠</h4>
+                    <p>旧衣回收</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node" onclick="showFlowDetails('sorting')">
+                    <div class="flow-icon">🤖</div>
+                    <h4>AI分拣+设计师改造</h4>
+                    <p>智能分类与创意重塑</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node" onclick="showFlowDetails('remake')">
+                    <div class="flow-icon">✨</div>
+                    <h4>Remake成品</h4>
+                    <p>全新设计作品</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node" onclick="showFlowDetails('impact')">
+                    <div class="flow-icon">🌱</div>
+                    <h4>碳减排+积分激励</h4>
+                    <p>环保价值回馈</p>
+                </div>
+            </div>
+            
+            <!-- Value Propositions -->
+            <div class="value-props">
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>环保价值</h3>
+                    <div class="value-content">
+                        <p>每年减少纺织废料排放，降低碳足迹，推动循环经济发展。通过科学的回收分拣和创意改造，让每一件旧衣都能发挥最大价值。</p>
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>公益价值</h3>
+                    <div class="value-content">
+                        <p>透明化公益流程，将改造收益投入乡村艺术教育，为偏远地区儿童提供教学用具和艺术课程支持。</p>
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🎨</div>
+                    <h3>创意价值</h3>
+                    <div class="value-content">
+                        <p>联合知名设计师，将废弃衣物转化为时尚单品，展现可持续设计的无限可能，引领环保时尚新潮流。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points & Solutions -->
+    <section class="solutions-section">
+        <div class="container">
+            <h2 class="section-title">解决行业痛点</h2>
+            
+            <div class="pain-solutions">
+                <div class="pain-point" onmouseover="showPainData(this, '每年产生2000万吨纺织废料')">
+                    <div class="pain-icon">❌</div>
+                    <h4>旧衣堆积污染环境</h4>
+                    <p>大量废弃衣物填埋焚烧</p>
+                </div>
+                <div class="solution-arrow">→</div>
+                <div class="solution">
+                    <div class="solution-icon">✅</div>
+                    <h4>科学回收分拣系统</h4>
+                    <p>AI智能分类，最大化利用率</p>
+                    <button class="btn btn-small" onclick="scrollToSection('donation')">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="pain-solutions">
+                <div class="pain-point" onmouseover="showPainData(this, '70%用户对捐赠去向不了解')">
+                    <div class="pain-icon">❌</div>
+                    <h4>公益捐赠流程不透明</h4>
+                    <p>用户无法追踪捐赠效果</p>
+                </div>
+                <div class="solution-arrow">→</div>
+                <div class="solution">
+                    <div class="solution-icon">✅</div>
+                    <h4>全程透明化追踪</h4>
+                    <p>实时进度更新，公益成效可见</p>
+                    <button class="btn btn-small" onclick="scrollToSection('charity-cases')">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="pain-solutions">
+                <div class="pain-point" onmouseover="showPainData(this, '90%旧衣改造缺乏专业指导')">
+                    <div class="pain-icon">❌</div>
+                    <h4>旧衣改造创意难落地</h4>
+                    <p>缺乏专业设计和技术支持</p>
+                </div>
+                <div class="solution-arrow">→</div>
+                <div class="solution">
+                    <div class="solution-icon">✅</div>
+                    <h4>设计师专业改造</h4>
+                    <p>创意设计+工艺技术双重保障</p>
+                    <button class="btn btn-small" onclick="scrollToSection('remake-showcase')">查看详情</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charity Cases -->
+    <section class="charity-section" id="charity-cases">
+        <div class="container">
+            <h2 class="section-title">公益案例</h2>
+            
+            <!-- Featured Case -->
+            <div class="featured-case">
+                <h3>乡村艺术教育教具捐赠</h3>
+                
+                <div class="case-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📋</div>
+                        <div class="timeline-content">
+                            <h4>案例背景</h4>
+                            <p>贵州山区小学缺乏艺术教学用具，影响儿童创意发展</p>
+                            <img src="assets/images/case-background.jpg" alt="山区小学现状" class="case-image">
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">⚙️</div>
+                        <div class="timeline-content">
+                            <h4>执行过程</h4>
+                            <p>收集500件旧衣，改造成画布、手工材料，制作教学用具</p>
+                            <div class="process-images">
+                                <img src="assets/images/process1.jpg" alt="旧衣收集">
+                                <img src="assets/images/process2.jpg" alt="改造过程">
+                                <img src="assets/images/process3.jpg" alt="成品制作">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📊</div>
+                        <div class="timeline-content">
+                            <h4>成效数据</h4>
+                            <div class="impact-stats">
+                                <div class="stat">
+                                    <span class="stat-number">500+</span>
+                                    <span class="stat-label">件旧衣回收</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">200+</span>
+                                    <span class="stat-label">套教学用具</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">300+</span>
+                                    <span class="stat-label">名受益学生</span>
+                                </div>
+                            </div>
+                            <div class="teacher-feedback">
+                                <blockquote>"孩子们现在每天都期待着艺术课，创作热情高涨！"</blockquote>
+                                <cite>— 李老师，贵州山区小学</cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="requireLogin('charity-updates')">查看更多案例</button>
+            </div>
+            
+            <!-- Industry References -->
+            <div class="industry-references">
+                <h3>行业参考案例</h3>
+                <div class="reference-cards">
+                    <div class="reference-card" onmouseover="showCaseImage(this, 'assets/images/patagonia-case.jpg')">
+                        <h4>Patagonia "Worn Wear"</h4>
+                        <p class="reference-model">核心模式：旧衣回收+修复再售</p>
+                        <p class="reference-value">参考价值：品牌环保理念传播</p>
+                        <button class="btn btn-small" onclick="openExternal('https://wornwear.patagonia.com')">了解更多</button>
+                    </div>
+                    
+                    <div class="reference-card" onmouseover="showCaseImage(this, 'assets/images/tencent-case.jpg')">
+                        <h4>腾讯公益</h4>
+                        <p class="reference-model">核心模式：透明化公益+用户参与</p>
+                        <p class="reference-value">参考价值：公益流程透明化</p>
+                        <button class="btn btn-small" onclick="openExternal('https://gongyi.qq.com')">了解更多</button>
+                    </div>
+                    
+                    <div class="reference-card" onmouseover="showCaseImage(this, 'assets/images/fanjimarket-case.jpg')">
+                        <h4>Fanjimarket</h4>
+                        <p class="reference-model">核心模式：创意市集+可持续设计</p>
+                        <p class="reference-value">参考价值：创意改造商业化</p>
+                        <button class="btn btn-small" onclick="openExternal('https://fanjimarket.com')">了解更多</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <!-
+- Donation Section -->
+    <section class="donation-section" id="donation">
+        <div class="container">
+            <h2 class="section-title">捐赠回收</h2>
+            
+            <!-- Recycling Methods -->
+            <div class="recycling-methods">
+                <div class="method-card">
+                    <div class="method-icon">🏪</div>
+                    <h3>线下回收</h3>
+                    <div class="method-process">
+                        <p><strong>流程：</strong>直接到店投递 → 现场分拣 → 即时积分</p>
+                        <p><strong>入口：</strong>体验店地址：XX市XX区XX路XX号</p>
+                        <p><strong>适用场景：</strong>少量衣物，希望即时反馈</p>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">🚚</div>
+                    <h3>线上预约上门回收</h3>
+                    <div class="method-process">
+                        <p><strong>流程：</strong>在线预约 → 上门收取 → 分拣中心处理 → 积分到账</p>
+                        <p><strong>入口：</strong>点击下方"预约上门"按钮</p>
+                        <p><strong>适用场景：</strong>大量衣物，居家便利</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="showPickupForm()">预约上门</button>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">📦</div>
+                    <h3>社区回收点投递</h3>
+                    <div class="method-process">
+                        <p><strong>流程：</strong>就近投递 → 定期收集 → 统一处理 → 积分到账</p>
+                        <p><strong>入口：</strong>查看附近回收点地图</p>
+                        <p><strong>适用场景：</strong>日常出行顺路投递</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recycling Requirements -->
+            <div class="recycling-requirements">
+                <h3>回收要求</h3>
+                <div class="requirements-grid">
+                    <div class="requirement-category">
+                        <h4>✅ 可回收物品</h4>
+                        <ul class="requirement-list">
+                            <li onmouseover="showExampleImage(this, 'assets/images/clothes-example.jpg')">各类成人、儿童服装</li>
+                            <li onmouseover="showExampleImage(this, 'assets/images/shoes-example.jpg')">鞋类（运动鞋、皮鞋等）</li>
+                            <li onmouseover="showExampleImage(this, 'assets/images/accessories-example.jpg')">配饰（包包、帽子、围巾）</li>
+                            <li onmouseover="showExampleImage(this, 'assets/images/fabric-example.jpg')">零散布料（1kg以上）</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirement-category">
+                        <h4>❌ 不可回收物品</h4>
+                        <ul class="requirement-list">
+                            <li>严重破损、发霉的衣物</li>
+                            <li>内衣内裤等贴身衣物</li>
+                            <li>含有害物质的工作服</li>
+                            <li>宠物用品</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Tracking -->
+            <div class="order-tracking">
+                <h3>回收进度查询</h3>
+                <div class="tracking-form">
+                    <input type="text" id="orderNumber" placeholder="请输入回收单号" class="form-input">
+                    <input type="text" id="phoneNumber" placeholder="请输入手机号" class="form-input">
+                    <button class="btn btn-primary" onclick="trackOrder()">查询进度</button>
+                </div>
+                
+                <div class="tracking-result" id="trackingResult" style="display: none;">
+                    <div class="progress-steps">
+                        <div class="step completed">
+                            <div class="step-icon">✓</div>
+                            <div class="step-text">已预约</div>
+                        </div>
+                        <div class="step active">
+                            <div class="step-icon">🚚</div>
+                            <div class="step-text">上门回收中</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">📦</div>
+                            <div class="step-text">已送达分拣中心</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">✨</div>
+                            <div class="step-text">已完成改造</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Points Rules Section -->
+    <section class="points-section" id="points-rules">
+        <div class="container">
+            <h2 class="section-title">积分规则</h2>
+            
+            <!-- Points Earning -->
+            <div class="points-earning">
+                <h3>积分获取规则</h3>
+                <table class="points-table">
+                    <thead>
+                        <tr>
+                            <th>类别</th>
+                            <th>具体项目</th>
+                            <th>积分</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3">衣物捐赠</td>
+                            <td>成人外套</td>
+                            <td>50积分/件</td>
+                            <td>夹克、大衣、羽绒服等</td>
+                        </tr>
+                        <tr>
+                            <td>儿童衣物</td>
+                            <td>30积分/件</td>
+                            <td>12岁以下儿童服装</td>
+                        </tr>
+                        <tr>
+                            <td>零散布料</td>
+                            <td>20积分/kg</td>
+                            <td>最低1kg起收</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">互动任务</td>
+                            <td>分享朋友圈</td>
+                            <td>10积分/次</td>
+                            <td>每日限1次</td>
+                        </tr>
+                        <tr>
+                            <td>参与活动</td>
+                            <td>100积分/次</td>
+                            <td>体验店活动、市集等</td>
+                        </tr>
+                        <tr>
+                            <td>企业员工</td>
+                            <td>团体捐赠</td>
+                            <td>1.5倍积分</td>
+                            <td>合作企业员工专享</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Points Calculator -->
+                <div class="points-calculator">
+                    <h4>积分计算器</h4>
+                    <div class="calculator-form">
+                        <div class="calc-item">
+                            <label>成人外套：</label>
+                            <input type="number" id="adultCoats" min="0" value="0"> 件
+                        </div>
+                        <div class="calc-item">
+                            <label>儿童衣物：</label>
+                            <input type="number" id="childClothes" min="0" value="0"> 件
+                        </div>
+                        <div class="calc-item">
+                            <label>零散布料：</label>
+                            <input type="number" id="fabricWeight" min="0" step="0.1" value="0"> kg
+                        </div>
+                        <div class="calc-result">
+                            <strong>预计获得积分：<span id="totalPoints">0</span> 分</strong>
+                        </div>
+                        <a href="donation.html" class="btn btn-primary">立即捐赠赚积分</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Points Usage -->
+            <div class="points-usage">
+                <h3>积分使用规则</h3>
+                
+                <div class="usage-categories">
+                    <div class="usage-card">
+                        <div class="usage-icon">💰</div>
+                        <h4>消费折扣</h4>
+                        <p class="usage-rule">10积分 = 1元</p>
+                        <ul class="usage-items">
+                            <li>Remake产品购买</li>
+                            <li>市集门票</li>
+                            <li>咖啡券</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="usage-card">
+                        <div class="usage-icon">🎁</div>
+                        <h4>实物兑换</h4>
+                        <div class="exchange-items">
+                            <div class="exchange-item">
+                                <img src="assets/images/eco-bag.jpg" alt="环保袋">
+                                <p>500积分 = 定制环保袋</p>
+                            </div>
+                            <div class="exchange-item">
+                                <img src="assets/images/designer-toy.jpg" alt="设计师玩偶">
+                                <p>1000积分 = 设计师联名小玩偶</p>
+                            </div>
+                            <div class="exchange-item">
+                                <img src="assets/images/remake-service.jpg" alt="改造服务">
+                                <p>2000积分 = 免费旧衣改造服务</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-card">
+                        <div class="usage-icon">❤️</div>
+                        <h4>公益捐赠</h4>
+                        <p class="charity-desc">将积分转化为公益资金</p>
+                        <button class="btn btn-primary" onclick="showCharityDonation()">捐赠积分</button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="requireLogin('points-balance')">查看积分余额</button>
+            </div>
+            
+            <!-- Points Rules Notes -->
+            <div class="points-notes">
+                <h4>重要说明</h4>
+                <div class="notes-content">
+                    <p class="note-item">⚠️ 积分有效期为1年</p>
+                    <p class="note-item">⚠️ 积分不可转让、不可兑现</p>
+                    <p class="note-item">⚠️ 积分兑换商品后不可取消</p>
+                </div>
+                <div class="expiry-reminder" onmouseover="showExpiryReminder()">
+                    <span class="reminder-icon">⏰</span>
+                    <span>积分到期提醒</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>电话：400-123-4567</p>
+                    <p>邮箱：contact@clothingrecycle.com</p>
+                    <!-- <p>地址：XX市XX区XX路XX号</p> -->
+                </div>
+                
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">微信公众号</a>
+                        <a href="#" class="social-link">微博</a>
+                        <a href="#" class="social-link">小红书</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>合作伙伴</h4>
+                    <p>设计师联盟</p>
+                    <p>环保组织</p>
+                    <p>公益基金会</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 衣物回收再设计项目. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Store Booking Modal -->
+    <div class="modal" id="storeBookingModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('storeBookingModal')">&times;</span>
+            <h3>预约体验店活动</h3>
+            <form class="booking-form" onsubmit="submitStoreBooking(event)">
+                <div class="form-group">
+                    <label>姓名：</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>手机号：</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>预约时间：</label>
+                    <input type="datetime-local" name="time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">提交预约</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pickup Form Modal -->
+    <div class="modal" id="pickupModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('pickupModal')">&times;</span>
+            <h3>预约上门回收</h3>
+            <form class="pickup-form" onsubmit="submitPickup(event)">
+                <div class="form-group">
+                    <label>收取地址：</label>
+                    <textarea name="address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>衣物类型：</label>
+                    <select name="clothingType" required>
+                        <option value="">请选择</option>
+                        <option value="mixed">混合衣物</option>
+                        <option value="adult-coat">成人外套</option>
+                        <option value="child-clothes">儿童衣物</option>
+                        <option value="fabric">零散布料</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>预约时间：</label>
+                    <input type="datetime-local" name="appointmentTime" required>
+                </div>
+                <div class="form-group">
+                    <label>时间偏好：</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="timePreference" value="weekday"> 工作日</label>
+                        <label><input type="radio" name="timePreference" value="weekend"> 周末</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">提交预约</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/components.js"></script>
+</body>
+</html>

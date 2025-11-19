@@ -1,0 +1,659 @@
+/* Personal Center Styles */
+
+/* Login Overlay */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.login-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-modal h3 {
+    text-align: center;
+    color: #2c5530;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.verification-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.verification-group input {
+    flex: 1;
+}
+
+/* Personal Center Layout */
+.personal-center {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+/* User Profile */
+.user-profile {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #28a745;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.username {
+    color: #2c5530;
+    margin-bottom: 0.5rem;
+}
+
+.phone-number {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.member-level {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.level-badge {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #333;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.level-progress {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Navigation Tabs */
+.center-tabs {
+    display: flex;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: transparent;
+    color: #6c757d;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    color: #28a745;
+    background: #f8f9fa;
+    border-bottom-color: #28a745;
+}
+
+.tab-btn:hover {
+    background: #f8f9fa;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Points Overview */
+.points-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.points-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+}
+
+.points-card h3 {
+    color: #2c5530;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.points-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 0.5rem;
+}
+
+.points-value.expiring {
+    color: #ffc107;
+}
+
+.expiry-date {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Points Actions */
+.points-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Points Records */
+.points-records {
+    margin-top: 2rem;
+}
+
+.records-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid #e9ecef;
+    background: transparent;
+    color: #6c757d;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn.active {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.filter-btn:hover {
+    border-color: #28a745;
+}
+
+.records-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    transition: background 0.3s ease;
+}
+
+.record-item:hover {
+    background: #f8f9fa;
+}
+
+.record-item:last-child {
+    border-bottom: none;
+}
+
+.record-date {
+    color: #6c757d;
+    font-size: 0.9rem;
+    min-width: 100px;
+}
+
+.record-desc {
+    flex: 1;
+    margin: 0 1rem;
+    color: #495057;
+}
+
+.record-points {
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 80px;
+    text-align: right;
+}
+
+.record-item.earn .record-points {
+    color: #28a745;
+}
+
+.record-item.spend .record-points {
+    color: #dc3545;
+}
+
+/* Donations List */
+.donations-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.donation-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid #28a745;
+}
+
+.donation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.donation-date {
+    font-weight: 500;
+    color: #2c5530;
+}
+
+.donation-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.donation-status.completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.donation-status.processing {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.donation-details {
+    margin-bottom: 1rem;
+}
+
+.donation-details p {
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+/* Appointments List */
+.appointments-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.appointment-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid #20c997;
+}
+
+.appointment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.appointment-header h4 {
+    color: #2c5530;
+    margin: 0;
+}
+
+.appointment-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.appointment-status.confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.appointment-status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.appointment-status.completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.appointment-details {
+    margin-bottom: 1rem;
+}
+
+.appointment-details p {
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Charity Updates */
+.charity-updates {
+    display: grid;
+    gap: 2rem;
+}
+
+.update-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #ffc107;
+}
+
+.update-date {
+    min-width: 100px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.update-content {
+    flex: 1;
+}
+
+.update-content h4 {
+    color: #2c5530;
+    margin-bottom: 1rem;
+}
+
+.update-content p {
+    color: #495057;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.update-images {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.update-images img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.impact-data {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.impact-item {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #28a745;
+    font-weight: 500;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2c5530;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #28a745;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+}
+
+/* Rating Stars */
+.rating-stars {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #e9ecef;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star:hover,
+.star.active {
+    color: #ffc107;
+}
+
+/* Member Rules Tooltip */
+.member-rules-tooltip {
+    position: absolute;
+    top: -150px;
+    left: 0;
+    background: #333;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 250px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.member-rules-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    border: 8px solid transparent;
+    border-top-color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .center-tabs {
+        flex-direction: column;
+    }
+    
+    .points-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .points-actions {
+        flex-direction: column;
+    }
+    
+    .records-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .record-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .record-points {
+        text-align: left;
+    }
+    
+    .donation-header,
+    .appointment-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .update-item {
+        flex-direction: column;
+    }
+    
+    .update-date {
+        min-width: auto;
+    }
+}

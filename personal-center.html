@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 衣物回收再设计项目</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/personal-center.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="衣物回收再设计" class="logo">
+                    <span class="logo-text">衣物回收再设计</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-outline">返回首页</a>
+                <button class="btn btn-secondary" onclick="logout()">退出登录</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Required Overlay -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <h3>请先登录</h3>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>手机号：</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>验证码：</label>
+                    <div class="verification-group">
+                        <input type="text" name="code" required>
+                        <button type="button" class="btn btn-small" onclick="sendVerificationCode()">发送验证码</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Personal Center Content -->
+    <div class="personal-center" id="personalCenter" style="display: none;">
+        <div class="container">
+            <!-- User Profile -->
+            <section class="user-profile">
+                <div class="profile-header">
+                    <div class="avatar">
+                        <img src="assets/images/default-avatar.png" alt="用户头像" id="userAvatar">
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="username" id="username">张三</h2>
+                        <p class="phone-number" id="phoneNumber">138****5678</p>
+                        <div class="member-level" onmouseover="showMemberRules()">
+                            <span class="level-badge" id="memberLevel">银牌会员</span>
+                            <span class="level-progress">距离金牌会员还需捐赠3次</span>
+                        </div>
+                        <button class="btn btn-outline" onclick="showEditProfile()">编辑信息</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <div class="center-tabs">
+                <button class="tab-btn active" onclick="showTab('points')">积分明细</button>
+                <button class="tab-btn" onclick="showTab('donations')">捐赠历史</button>
+                <button class="tab-btn" onclick="showTab('appointments')">预约记录</button>
+                <button class="tab-btn" onclick="showTab('charity-updates')">公益动态</button>
+            </div>
+
+            <!-- Points Details Tab -->
+            <section class="tab-content active" id="pointsTab">
+                <div class="points-overview">
+                    <div class="points-card">
+                        <h3>可用积分</h3>
+                        <span class="points-value" id="availablePoints">1,250</span>
+                    </div>
+                    <div class="points-card">
+                        <h3>即将过期</h3>
+                        <span class="points-value expiring" id="expiringPoints">100</span>
+                        <p class="expiry-date">2024年12月31日到期</p>
+                    </div>
+                </div>
+
+                <div class="points-actions">
+                    <button class="btn btn-primary" onclick="scrollToSection('points-rules')">积分规则</button>
+                    <button class="btn btn-outline" onclick="showPointsExchange()">积分兑换</button>
+                </div>
+
+                <div class="points-records">
+                    <div class="records-header">
+                        <h3>积分记录</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" onclick="filterPoints('all')">全部</button>
+                            <button class="filter-btn" onclick="filterPoints('earn')">获取</button>
+                            <button class="filter-btn" onclick="filterPoints('spend')">支出</button>
+                        </div>
+                    </div>
+
+                    <div class="records-list">
+                        <div class="record-item earn">
+                            <div class="record-date">2024-11-15</div>
+                            <div class="record-desc">捐赠成人外套 2件</div>
+                            <div class="record-points">+100</div>
+                        </div>
+                        <div class="record-item spend">
+                            <div class="record-date">2024-11-10</div>
+                            <div class="record-desc">兑换定制环保袋</div>
+                            <div class="record-points">-500</div>
+                        </div>
+                        <div class="record-item earn">
+                            <div class="record-date">2024-11-05</div>
+                            <div class="record-desc">参与体验店活动</div>
+                            <div class="record-points">+100</div>
+                        </div>
+                        <div class="record-item earn">
+                            <div class="record-date">2024-10-28</div>
+                            <div class="record-desc">捐赠儿童衣物 5件</div>
+                            <div class="record-points">+150</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Donations History Tab -->
+            <section class="tab-content" id="donationsTab">
+                <div class="donations-list">
+                    <div class="donation-item">
+                        <div class="donation-header">
+                            <span class="donation-date">2024-11-15</span>
+                            <span class="donation-status completed">已完成改造</span>
+                        </div>
+                        <div class="donation-details">
+                            <p><strong>衣物类型：</strong>成人外套 2件</p>
+                            <p><strong>回收方式：</strong>上门回收</p>
+                            <p><strong>当前进度：</strong>已完成改造</p>
+                        </div>
+                        <button class="btn btn-small" onclick="showDonationDetails('D001')">查看详情</button>
+                    </div>
+
+                    <div class="donation-item">
+                        <div class="donation-header">
+                            <span class="donation-date">2024-10-28</span>
+                            <span class="donation-status processing">分拣中心处理中</span>
+                        </div>
+                        <div class="donation-details">
+                            <p><strong>衣物类型：</strong>儿童衣物 5件</p>
+                            <p><strong>回收方式：</strong>线下回收</p>
+                            <p><strong>当前进度：</strong>已送达分拣中心</p>
+                        </div>
+                        <button class="btn btn-small" onclick="showDonationDetails('D002')">查看详情</button>
+                    </div>
+
+                    <div class="donation-item">
+                        <div class="donation-header">
+                            <span class="donation-date">2024-10-15</span>
+                            <span class="donation-status completed">已完成改造</span>
+                        </div>
+                        <div class="donation-details">
+                            <p><strong>衣物类型：</strong>零散布料 3kg</p>
+                            <p><strong>回收方式：</strong>社区回收点</p>
+                            <p><strong>当前进度：</strong>已完成改造</p>
+                        </div>
+                        <button class="btn btn-small" onclick="showDonationDetails('D003')">查看详情</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Tab -->
+            <section class="tab-content" id="appointmentsTab">
+                <div class="appointments-list">
+                    <div class="appointment-item">
+                        <div class="appointment-header">
+                            <h4>体验店手工课</h4>
+                            <span class="appointment-status confirmed">已确认</span>
+                        </div>
+                        <div class="appointment-details">
+                            <p><strong>时间：</strong>2024-11-20 14:00</p>
+                            <p><strong>地点：</strong>XX市XX区体验店</p>
+                            <p><strong>活动：</strong>旧衣改造手工课</p>
+                        </div>
+                        <div class="appointment-actions">
+                            <button class="btn btn-small btn-danger" onclick="cancelAppointment('A001')">取消预约</button>
+                        </div>
+                    </div>
+
+                    <div class="appointment-item">
+                        <div class="appointment-header">
+                            <h4>上门回收</h4>
+                            <span class="appointment-status pending">待确认</span>
+                        </div>
+                        <div class="appointment-details">
+                            <p><strong>时间：</strong>2024-11-18 10:00</p>
+                            <p><strong>地址：</strong>XX市XX区XX路XX号</p>
+                            <p><strong>物品：</strong>成人外套 3件</p>
+                        </div>
+                        <div class="appointment-actions">
+                            <button class="btn btn-small btn-danger" onclick="cancelAppointment('A002')">取消预约</button>
+                        </div>
+                    </div>
+
+                    <div class="appointment-item">
+                        <div class="appointment-header">
+                            <h4>市集摊位</h4>
+                            <span class="appointment-status completed">已完成</span>
+                        </div>
+                        <div class="appointment-details">
+                            <p><strong>时间：</strong>2024-11-01 09:00</p>
+                            <p><strong>地点：</strong>可持续循环市集</p>
+                            <p><strong>活动：</strong>环保理念分享</p>
+                        </div>
+                        <div class="appointment-actions">
+                            <button class="btn btn-small" onclick="showReviewForm('A003')">写评价</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charity Updates Tab -->
+            <section class="tab-content" id="charityUpdatesTab">
+                <div class="charity-updates">
+                    <div class="update-item">
+                        <div class="update-date">2024-11-10</div>
+                        <div class="update-content">
+                            <h4>您参与的"乡村艺术教育"项目有新进展</h4>
+                            <p>您捐赠的2件成人外套已成功改造为10套绘画围裙，送达贵州山区小学。孩子们非常喜欢，已开始使用。</p>
+                            <div class="update-images">
+                                <img src="assets/images/charity-update1.jpg" alt="改造成果">
+                                <img src="assets/images/charity-update2.jpg" alt="孩子们使用">
+                            </div>
+                            <div class="impact-data">
+                                <span class="impact-item">碳减排：2.5kg CO₂</span>
+                                <span class="impact-item">受益学生：25名</span>
+                                <span class="impact-item">获得积分：100分</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="update-item">
+                        <div class="update-date">2024-10-25</div>
+                        <div class="update-content">
+                            <h4>您的捐赠助力"环保教具制作"项目</h4>
+                            <p>您捐赠的儿童衣物已制作成环保教学用具，包括拼图、手工材料等，将用于偏远地区的环保教育。</p>
+                            <div class="impact-data">
+                                <span class="impact-item">碳减排：1.8kg CO₂</span>
+                                <span class="impact-item">制作教具：15套</span>
+                                <span class="impact-item">获得积分：150分</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('editProfileModal')">&times;</span>
+            <h3>编辑个人信息</h3>
+            <form class="edit-form" onsubmit="updateProfile(event)">
+                <div class="form-group">
+                    <label>姓名：</label>
+                    <input type="text" name="name" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label>手机号：</label>
+                    <input type="tel" name="phone" id="editPhone" required>
+                    <button type="button" class="btn btn-small">更换绑定</button>
+                </div>
+                <button type="submit" class="btn btn-primary">保存修改</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Donation Details Modal -->
+    <div class="modal" id="donationDetailsModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('donationDetailsModal')">&times;</span>
+            <h3>捐赠详情</h3>
+            <div class="donation-detail-content" id="donationDetailContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Form Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('reviewModal')">&times;</span>
+            <h3>活动评价</h3>
+            <form class="review-form" onsubmit="submitReview(event)">
+                <div class="form-group">
+                    <label>评分：</label>
+                    <div class="rating-stars">
+                        <span class="star" onclick="setRating(1)">★</span>
+                        <span class="star" onclick="setRating(2)">★</span>
+                        <span class="star" onclick="setRating(3)">★</span>
+                        <span class="star" onclick="setRating(4)">★</span>
+                        <span class="star" onclick="setRating(5)">★</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>评价内容：</label>
+                    <textarea name="review" rows="4" placeholder="请分享您的体验感受..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">提交评价</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/personal-center.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Image Assets Placeholder
+
+This directory should contain the following images for the clothing recycling website:
+
+## Logo and Branding
+- logo.png - Main website logo
+- favicon.ico - Website favicon
+
+## Banner Images
+- banner1.jpg - Recycling scene banner
+- banner2.jpg - Remake products banner  
+- banner3.jpg - Charity scenarios banner
+
+## Business Section
+- experience-store.jpg - Experience store image
+- market.jpg - Sustainable market image
+
+## Case Studies
+- case-background.jpg - Rural school background
+- process1.jpg - Clothing collection process
+- process2.jpg - Remake process
+- process3.jpg - Final products
+- patagonia-case.jpg - Patagonia reference case
+- tencent-case.jpg - Tencent charity case
+- fanjimarket-case.jpg - Fanjimarket reference
+
+## Product Examples
+- clothes-example.jpg - Clothing donation examples
+- shoes-example.jpg - Shoe donation examples
+- accessories-example.jpg - Accessories examples
+- fabric-example.jpg - Fabric materials examples
+
+## Points System
+- eco-bag.jpg - Eco-friendly bag reward
+- designer-toy.jpg - Designer toy reward
+- remake-service.jpg - Remake service image
+
+## Personal Center
+- default-avatar.png - Default user avatar
+- charity-update1.jpg - Charity project update 1
+- charity-update2.jpg - Charity project update 2
+- donation-before.jpg - Before remake image
+- donation-after.jpg - After remake image
+- donation2-before.jpg - Second donation before image
+
+## Instructions
+Replace this file with actual images matching the filenames listed above.
+Image dimensions should be optimized for web use (typically 1200px width for banners, 400px for cards).
+Use WebP format when possible for better performance.
